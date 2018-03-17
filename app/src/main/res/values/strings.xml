@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">GitHubRepos</string>
+
+    <string name="app_name">GitHub Android</string>
+    <string name="internet_connection_error_title">Connectivity Error</string>
+    <string name="internet_connection_error_text">Sorry but it seems you do not have an Internet connection available. Please check it and
+        launch the app again
+    </string>
+    <string name="internet_connection_error_button_text">Exit the app</string>
+
 </resources>
