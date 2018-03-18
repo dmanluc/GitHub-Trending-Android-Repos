@@ -1,8 +1,9 @@
 package com.dmanluc.githubrepos.presentation.ui.activity.splash
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import com.dmanluc.githubrepos.presentation.ui.activity.trendingrepos.TrendingReposActivity
 
 /**
  * Initial splash activity
@@ -15,9 +16,9 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //val intent = Intent(this, CharactersActivity::class.java)
-        //startActivity(intent)
-        Handler().postDelayed({ finish() }, 3000)
+        val intent = Intent(this, TrendingReposActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }

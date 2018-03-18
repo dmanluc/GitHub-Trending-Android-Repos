@@ -1,6 +1,7 @@
 package com.dmanluc.githubrepos.presentation.di.module
 
 import android.content.Context
+import com.dmanluc.githubrepos.BuildConfig
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -44,6 +45,13 @@ class AppModule(private val application: Context, private val baseUrl: String) {
 
         return OkHttpClient.Builder()
                 .addInterceptor(interceptor)
+                .addInterceptor { chain ->
+                    val requestBuilder = chain.request().newBuilder()
+                    requestBuilder.header("Content-Type", "application/json")
+                    requestBuilder.header("Authorization", "token " + BuildConfig.GITHUB_API_TOKEN)
+                    requestBuilder.header("Accept-Language", "en")
+                    chain.proceed(requestBuilder.build())
+                }
                 .connectTimeout(20, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .build()
@@ -58,6 +66,13 @@ class AppModule(private val application: Context, private val baseUrl: String) {
 
         return OkHttpClient.Builder()
                 .addInterceptor(interceptor)
+                .addInterceptor { chain ->
+                    val requestBuilder = chain.request().newBuilder()
+                    requestBuilder.header("Content-Type", "application/json")
+                    requestBuilder.header("Authorization", "token " + BuildConfig.GITHUB_API_TOKEN)
+                    requestBuilder.header("Accept-Language", "en")
+                    chain.proceed(requestBuilder.build())
+                }
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build()

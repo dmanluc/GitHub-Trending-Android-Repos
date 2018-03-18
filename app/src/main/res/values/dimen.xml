@@ -12,7 +12,7 @@
     <dimen name="xxbig_margin">64dp</dimen>
 
     <!-- Text sizes -->
-    <dimen name="textSize_xs">12sp</dimen>
+    <dimen name="textSize_xs">10sp</dimen>
     <dimen name="textSize_s">14sp</dimen>
     <dimen name="textSize_default">16sp</dimen>
     <dimen name="textSize_m">18sp</dimen>
