@@ -18,6 +18,8 @@ interface TrendingReposOverviewView : BaseView {
 
     fun hideLoadingProgress()
 
+    fun handleFloatingMenu(enable: Boolean)
+
     fun showGithubApiErrorMessage(errorMessage: String?)
 
 }

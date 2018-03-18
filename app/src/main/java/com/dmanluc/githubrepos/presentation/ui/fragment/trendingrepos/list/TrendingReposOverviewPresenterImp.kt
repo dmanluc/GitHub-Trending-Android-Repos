@@ -3,8 +3,10 @@ package com.dmanluc.githubrepos.presentation.ui.fragment.trendingrepos.list
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
 import com.dmanluc.githubrepos.domain.interactor.BaseObserver
 import com.dmanluc.githubrepos.domain.interactor.GetGithubTrendingAndroidRepos
+import com.dmanluc.githubrepos.domain.repository.GithubRepository
 import com.dmanluc.githubrepos.presentation.base.BasePresenter
 import org.parceler.Parcel
+import org.parceler.ParcelConstructor
 import javax.inject.Inject
 
 /**
@@ -16,29 +18,36 @@ import javax.inject.Inject
  */
 class TrendingReposOverviewPresenterImp
 @Inject constructor(
-        private val githubTrendingAndroidRepos: GetGithubTrendingAndroidRepos) : BasePresenter<TrendingReposOverviewView, TrendingReposOverviewPresenterImp.State>
-                                                                     () {
+        private val githubTrendingAndroidRepos: GetGithubTrendingAndroidRepos) :
+        BasePresenter<TrendingReposOverviewView, TrendingReposOverviewPresenterImp.State>
+        () {
 
-    fun loadGithubTrendingAndroidRepos(offset: Int, refreshMode: Boolean) {
+    fun loadGithubTrendingAndroidRepos(
+            trendingOption: GithubRepository.TrendingOption = GithubRepository.TrendingOption.TODAY, offset: Int,
+            refreshMode: Boolean) {
         if (!refreshMode && isViewAttached()) view?.showLoadingProgress()
+
+        getState().trendingOption = trendingOption
 
         githubTrendingAndroidRepos.execute(object : BaseObserver<List<GithubRepo>>() {
             override fun onSuccess(t: List<GithubRepo>) {
                 super.onSuccess(t)
                 if (!refreshMode) view?.hideLoadingProgress()
-                view?.showGithubRepoList(t, offset > 0)
+                view?.handleFloatingMenu(true)
+                view?.showGithubRepoList(t, offset > 0 && trendingOption == getState().trendingOption)
             }
 
             override fun onErrorMessage(errorMessage: String?) {
                 super.onErrorMessage(errorMessage)
                 view?.hideLoadingProgress()
+                view?.handleFloatingMenu(false)
                 view?.showGithubApiErrorMessage(errorMessage)
             }
-        }, Pair((offset/30) + 1, 30))
+        }, Pair(trendingOption, Pair((offset / 30) + 1, 30)))
     }
 
-    override fun newState(): State = State()
+    override fun newState(): State = State(GithubRepository.TrendingOption.TODAY)
 
     @Parcel
-    class State : BasePresenter.State
+    data class State @ParcelConstructor constructor(var trendingOption: GithubRepository.TrendingOption) : BasePresenter.State
 }

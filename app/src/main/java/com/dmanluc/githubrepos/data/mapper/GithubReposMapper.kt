@@ -22,7 +22,7 @@ open class GithubReposMapper : Mapper<GithubSearchReposOutputContract, GithubRep
                         ownerAvatarUrl = r.owner?.avatar_url.orEmpty(),
                         ownerUrl = r.owner?.html_url.orEmpty(),
                         description = r.description.orEmpty(),
-                        private = r.private ?: false,
+                        isPrivate = r.private ?: false,
                         contributorsUrl = r.contributors_url.orEmpty(),
                         contributors = mutableListOf(),
                         createdAt = r.created_at.orEmpty().isoDateToPrettyFormat(),

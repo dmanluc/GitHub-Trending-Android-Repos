@@ -10,6 +10,13 @@ import io.reactivex.Single
  */
 interface GithubRepository {
 
-    fun getTrendingAndroidRepos(page: Int, itemsPerPage: Int) : Single<List<GithubRepo>>
+    fun getTrendingAndroidRepos(trendingOption: TrendingOption, page: Int, itemsPerPage: Int) : Single<List<GithubRepo>>
+
+    enum class TrendingOption(val info: String) {
+        TODAY("#today"),
+        THIS_WEEK("#this week"),
+        THIS_MONTH("this month"),
+        THIS_YEAR("this_year")
+    }
 
 }

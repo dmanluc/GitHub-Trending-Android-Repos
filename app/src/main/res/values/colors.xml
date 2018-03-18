@@ -10,4 +10,6 @@
     <color name="refresh_progress_3">@color/colorAccent</color>
     <color name="backgroundGreyTransparent">#A5676767</color>
 
+    <color name="fab_label_selected">#FFDA4336</color>
+
 </resources>

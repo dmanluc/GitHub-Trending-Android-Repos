@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">GitHub Android</string>
+    <string name="app_name">GitHub Trending Android Repos</string>
     <string name="internet_connection_error_title">Connectivity Error</string>
     <string name="internet_connection_error_text">Sorry but it seems you do not have an Internet connection available. Please check it and
         launch the app again
