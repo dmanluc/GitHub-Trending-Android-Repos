@@ -6,6 +6,7 @@ package com.dmanluc.githubrepos.data.contract
  * @since    18/3/18.
  */
 data class GithubRepoOutputContract(val id: Int?,
+                                    val name: String?,
                                     val full_name: String?,
                                     val owner: GithubRepoOwnerOutputContract?,
                                     val private: Boolean?,

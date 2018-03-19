@@ -22,4 +22,6 @@
     <dimen name="textSize_xxxl">38sp</dimen>
     <dimen name="textSize_xxxxl">48sp</dimen>
 
+    <dimen name="avatar_size">36dp</dimen>
+
 </resources>

@@ -6,6 +6,7 @@ import com.dmanluc.githubrepos.R
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
 import com.dmanluc.githubrepos.presentation.base.BaseActivity
 import com.dmanluc.githubrepos.presentation.di.component.DaggerTrendingReposActivityComponent
+import com.dmanluc.githubrepos.presentation.ui.fragment.trendingrepos.detail.TrendingRepoDetailFragment
 import com.dmanluc.githubrepos.presentation.ui.fragment.trendingrepos.list.TrendingReposOverviewFragment
 import javax.inject.Inject
 
@@ -51,7 +52,7 @@ class TrendingReposActivity : BaseActivity<TrendingReposView, TrendingReposPrese
     }
 
     override fun showGithubRepoDetails(githubRepo: GithubRepo) {
-        //switchFragment(TrendingRepoDetailFragment.newInstance(character), true)
+        switchFragment(TrendingRepoDetailFragment.newInstance(githubRepo), true)
     }
 
     override fun onGithubRepoSelected(githubRepo: GithubRepo) {

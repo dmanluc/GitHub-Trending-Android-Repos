@@ -1,9 +1,10 @@
 package com.dmanluc.githubrepos.presentation.di.component
 
 import com.dmanluc.githubrepos.data.api.GithubApi
+import com.dmanluc.githubrepos.data.mapper.GithubRepoContributorsMapper
 import com.dmanluc.githubrepos.data.mapper.GithubReposMapper
 import com.dmanluc.githubrepos.data.repository.GithubRepositoryImpl
-import com.dmanluc.githubrepos.domain.interactor.GetGithubTrendingAndroidRepos
+import com.dmanluc.githubrepos.domain.interactor.GetGithubTrendingAndroidReposUseCase
 import com.dmanluc.githubrepos.presentation.adapter.TrendingReposOverviewAdapter
 import com.dmanluc.githubrepos.presentation.di.module.TrendingReposOverviewModule
 import com.dmanluc.githubrepos.presentation.di.scope.FragmentScope
@@ -23,11 +24,13 @@ interface TrendingReposOverviewFragmentComponent {
 
     fun provideGithubApi(): GithubApi
 
-    fun provideApiMapper(): GithubReposMapper
+    fun provideRepoApiMapper(): GithubReposMapper
+
+    fun provideRepoContributorsApiMapper(): GithubRepoContributorsMapper
 
     fun provideGithubRepository(): GithubRepositoryImpl
 
-    fun provideGithubTrendingAndroidReposUseCase(): GetGithubTrendingAndroidRepos
+    fun provideGithubTrendingAndroidReposUseCase(): GetGithubTrendingAndroidReposUseCase
 
     fun provideGithubTrendingAndroidReposAdapterListener(): TrendingReposOverviewAdapter.Listener
 

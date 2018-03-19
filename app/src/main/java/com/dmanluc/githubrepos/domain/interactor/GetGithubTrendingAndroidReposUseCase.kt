@@ -15,7 +15,7 @@ import io.reactivex.Single
  *
  * @author Daniel Manrique Lucas
  */
-class GetGithubTrendingAndroidRepos(private val repository: GithubRepository) :
+class GetGithubTrendingAndroidReposUseCase(private val repository: GithubRepository) :
         UseCase<List<GithubRepo>, Pair<GithubRepository.TrendingOption, Pair<Int, Int>>>() {
 
     override fun buildUseCaseObservable(

@@ -13,11 +13,21 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.dmanluc.githubrepos.R
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
-import kotlinx.android.synthetic.main.item_github_repo_list.view.progressBar
+import kotlinx.android.synthetic.main.item_github_repo_list.view.progressBar1
+import kotlinx.android.synthetic.main.item_github_repo_list.view.progressBar2
+import kotlinx.android.synthetic.main.item_github_repo_list.view.progressBar3
+import kotlinx.android.synthetic.main.item_github_repo_list.view.progressBar4
+import kotlinx.android.synthetic.main.item_github_repo_list.view.progressBar5
+import kotlinx.android.synthetic.main.item_github_repo_list.view.progressBar6
+import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_contributor_avatar_1
+import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_contributor_avatar_2
+import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_contributor_avatar_3
+import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_contributor_avatar_4
+import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_contributor_avatar_5
+import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_contributor_avatar_6
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_description
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_forks
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_name
-import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_owner_avatar
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_stars
 import java.net.URL
 import javax.inject.Inject
@@ -30,12 +40,14 @@ import javax.inject.Inject
  * @since    18/3/18.
  */
 class TrendingReposOverviewAdapter @Inject constructor(
-        private val context: Context, private val listener: Listener) : RecyclerView.Adapter<TrendingReposOverviewAdapter.GithubViewHolder>() {
+        private val context: Context, private val listener: Listener) :
+        RecyclerView.Adapter<TrendingReposOverviewAdapter.GithubViewHolder>() {
 
     private val items: MutableList<GithubRepo> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GithubViewHolder {
-        return GithubViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_github_repo_list, parent, false))
+        return GithubViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.item_github_repo_list, parent, false))
     }
 
     override fun onBindViewHolder(holder: GithubViewHolder, position: Int) {
@@ -56,30 +68,61 @@ class TrendingReposOverviewAdapter @Inject constructor(
     inner class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: GithubRepo) {
-            Glide.with(context)
-                    .load(URL(item.ownerAvatarUrl))
-                    .listener(object : RequestListener<Drawable> {
-                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                            itemView.progressBar.visibility = View.GONE
-                            return false
-                        }
+            val contributorsAvatarIds = listOf(itemView.repository_contributor_avatar_1,
+                                               itemView.repository_contributor_avatar_2,
+                                               itemView.repository_contributor_avatar_3,
+                                               itemView.repository_contributor_avatar_4,
+                                               itemView.repository_contributor_avatar_5,
+                                               itemView.repository_contributor_avatar_6)
 
-                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
-                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                            itemView.progressBar.visibility = View.GONE
-                            return false
-                        }
-                    })
-                    .into(itemView.repository_owner_avatar)
+            val contributorsProgressBarAvatarIds = listOf(itemView.progressBar1,
+                                                          itemView.progressBar2,
+                                                          itemView.progressBar3,
+                                                          itemView.progressBar4,
+                                                          itemView.progressBar5,
+                                                          itemView.progressBar6)
 
-            itemView.repository_name.text = item.name
-            itemView.repository_description.text = item.description
+            itemView.repository_name.text = item.fullName
+            if (item.description.isBlank()) itemView.repository_description.text = context.getString(
+                    R.string.empty_repo_description)
+            else {
+                itemView.repository_description.text = item.description
+            }
             itemView.repository_stars.text = item.starsRating.toString()
             itemView.repository_forks.text = item.forksNumber.toString()
+
+            if (item.contributors?.isNotEmpty() == true) {
+                item.contributors?.take(6)?.forEachIndexed { index, githubRepoContributor ->
+                    contributorsProgressBarAvatarIds[index].visibility = View.VISIBLE
+                    Glide.with(context)
+                            .load(URL(githubRepoContributor.avatarUrl))
+                            .listener(object : RequestListener<Drawable> {
+                                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
+                                                          isFirstResource: Boolean): Boolean {
+                                    contributorsProgressBarAvatarIds[index].visibility = View.GONE
+                                    return false
+                                }
+
+                                override fun onResourceReady(resource: Drawable?, model: Any?,
+                                                             target: Target<Drawable>?,
+                                                             dataSource: DataSource?,
+                                                             isFirstResource: Boolean): Boolean {
+                                    contributorsProgressBarAvatarIds[index].visibility = View.GONE
+                                    contributorsAvatarIds[index].visibility = View.VISIBLE
+                                    return false
+                                }
+                            })
+                            .into(contributorsAvatarIds.get(index = index))
+                }
+            } else {
+                contributorsProgressBarAvatarIds.forEach { it.visibility = View.GONE }
+                contributorsAvatarIds.forEach { it.visibility = View.GONE }
+            }
 
             itemView.setOnClickListener { listener.onGithubRepoSelected(item) }
         }
     }
+
 
     interface Listener {
 

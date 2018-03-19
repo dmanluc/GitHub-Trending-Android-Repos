@@ -6,5 +6,6 @@
         launch the app again
     </string>
     <string name="internet_connection_error_button_text">Exit the app</string>
+    <string name="empty_repo_description">No description found</string>
 
 </resources>

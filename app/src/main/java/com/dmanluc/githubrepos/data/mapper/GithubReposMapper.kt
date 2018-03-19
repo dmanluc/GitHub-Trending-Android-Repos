@@ -17,7 +17,8 @@ open class GithubReposMapper : Mapper<GithubSearchReposOutputContract, GithubRep
             outputContract.items?.map { r ->
                 GithubRepo(
                         id = r.id ?: 0,
-                        name = r.full_name.orEmpty(),
+                        name = r.name.orEmpty(),
+                        fullName = r.full_name.orEmpty(),
                         ownerName = r.owner?.login.orEmpty(),
                         ownerAvatarUrl = r.owner?.avatar_url.orEmpty(),
                         ownerUrl = r.owner?.html_url.orEmpty(),
@@ -34,16 +35,17 @@ open class GithubReposMapper : Mapper<GithubSearchReposOutputContract, GithubRep
                         licenseName = r.license?.name.orEmpty())
             } ?: emptyList()
 
+    fun String.isoDateToPrettyFormat(): String {
+        return try {
+            val isoDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+            val prettyFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
+            prettyFormat.format(isoDateFormat.parse(this))
+        } catch (e: IllegalArgumentException) {
+            this
+        } catch (e: ParseException) {
+            this
+        }
+    }
+
 }
 
-fun String.isoDateToPrettyFormat(): String {
-    return try {
-        val isoDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
-        val prettyFormat = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
-        prettyFormat.format(isoDateFormat.parse(this))
-    } catch (e: IllegalArgumentException) {
-        this
-    } catch (e: ParseException) {
-        this
-    }
-}

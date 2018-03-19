@@ -9,7 +9,7 @@ import org.parceler.ParcelConstructor
  * @since    17/3/18.
  */
 @Parcel(Parcel.Serialization.BEAN)
-data class GithubRepoContributor @ParcelConstructor constructor(val id: String,
+data class GithubRepoContributor @ParcelConstructor constructor(val id: Int,
                                                                 val loginName: String,
                                                                 val avatarUrl: String,
                                                                 val url: String)

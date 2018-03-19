@@ -1,9 +1,11 @@
 package com.dmanluc.githubrepos.data.api
 
+import com.dmanluc.githubrepos.data.contract.GithubRepoContributorOutputContract
 import com.dmanluc.githubrepos.data.contract.GithubSearchReposOutputContract
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 /**
  * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
@@ -19,5 +21,8 @@ interface GithubApi {
             @Query("order") orderType: String,
             @Query("page") currentPage: Int,
             @Query("per_page") itemsPerPage: Int): Single<GithubSearchReposOutputContract>
+
+    @GET
+    fun fetchRepoContributors(@Url repoUrl: String): Single<List<GithubRepoContributorOutputContract>>
 
 }

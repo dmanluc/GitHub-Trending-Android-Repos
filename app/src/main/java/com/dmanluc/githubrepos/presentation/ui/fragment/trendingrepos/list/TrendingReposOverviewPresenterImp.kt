@@ -2,7 +2,7 @@ package com.dmanluc.githubrepos.presentation.ui.fragment.trendingrepos.list
 
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
 import com.dmanluc.githubrepos.domain.interactor.BaseObserver
-import com.dmanluc.githubrepos.domain.interactor.GetGithubTrendingAndroidRepos
+import com.dmanluc.githubrepos.domain.interactor.GetGithubTrendingAndroidReposUseCase
 import com.dmanluc.githubrepos.domain.repository.GithubRepository
 import com.dmanluc.githubrepos.presentation.base.BasePresenter
 import org.parceler.Parcel
@@ -18,7 +18,7 @@ import javax.inject.Inject
  */
 class TrendingReposOverviewPresenterImp
 @Inject constructor(
-        private val githubTrendingAndroidRepos: GetGithubTrendingAndroidRepos) :
+        private val githubTrendingAndroidReposUseCase: GetGithubTrendingAndroidReposUseCase) :
         BasePresenter<TrendingReposOverviewView, TrendingReposOverviewPresenterImp.State>
         () {
 
@@ -29,13 +29,12 @@ class TrendingReposOverviewPresenterImp
 
         getState().trendingOption = trendingOption
 
-        githubTrendingAndroidRepos.execute(object : BaseObserver<List<GithubRepo>>() {
+        githubTrendingAndroidReposUseCase.execute(object : BaseObserver<List<GithubRepo>>() {
             override fun onSuccess(t: List<GithubRepo>) {
                 super.onSuccess(t)
                 if (!refreshMode) view?.hideLoadingProgress()
                 view?.handleFloatingMenu(true)
-                view?.showGithubRepoList(t, offset > 0 && trendingOption == getState().trendingOption)
-            }
+                view?.showGithubRepoList(t, offset > 0 && trendingOption == getState().trendingOption)            }
 
             override fun onErrorMessage(errorMessage: String?) {
                 super.onErrorMessage(errorMessage)

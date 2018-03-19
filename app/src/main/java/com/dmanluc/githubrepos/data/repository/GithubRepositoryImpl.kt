@@ -1,8 +1,10 @@
 package com.dmanluc.githubrepos.data.repository
 
 import com.dmanluc.githubrepos.data.api.GithubApi
+import com.dmanluc.githubrepos.data.mapper.GithubRepoContributorsMapper
 import com.dmanluc.githubrepos.data.mapper.GithubReposMapper
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
+import com.dmanluc.githubrepos.domain.entity.GithubRepoContributor
 import com.dmanluc.githubrepos.domain.repository.GithubRepository
 import io.reactivex.Single
 import java.text.SimpleDateFormat
@@ -19,9 +21,12 @@ import javax.inject.Inject
  * @since    17/3/18.
  */
 class GithubRepositoryImpl
-@Inject constructor(private val api: GithubApi, private val mapper: GithubReposMapper) : GithubRepository {
+@Inject constructor(private val api: GithubApi,
+                    private val reposMapper: GithubReposMapper,
+                    private val contributorsMapper: GithubRepoContributorsMapper) : GithubRepository {
 
-    override fun getTrendingAndroidRepos(trendingOption: GithubRepository.TrendingOption, page: Int, itemsPerPage: Int): Single<List<GithubRepo>> {
+    override fun getTrendingAndroidRepos(trendingOption: GithubRepository.TrendingOption, page: Int,
+                                         itemsPerPage: Int): Single<List<GithubRepo>> {
         val query = "android created:>=${getCalculatedDate(trendingOption)}"
         val sortType = "stars"
         val orderType = "desc"
@@ -30,7 +35,17 @@ class GithubRepositoryImpl
                                              sortType,
                                              orderType,
                                              page,
-                                             itemsPerPage).map { mapper.mapApiContractToDomainModel(it) }
+                                             itemsPerPage)
+                .map { reposMapper.mapApiContractToDomainModel(it) }
+                .map {
+                    it.map {
+                        it.copy(contributors = api.fetchRepoContributors(it.contributorsUrl)
+                                .onErrorResumeNext(Single.just(mutableListOf()))
+                                .map {
+                                    contributorsMapper.mapApiContractToDomainModel(it)
+                                }.blockingGet())
+                    }
+                }
     }
 
     private fun getCalculatedDate(dateType: GithubRepository.TrendingOption): String {
@@ -39,7 +54,8 @@ class GithubRepositoryImpl
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
         when (dateType) {
-            GithubRepository.TrendingOption.TODAY -> {}
+            GithubRepository.TrendingOption.TODAY -> {
+            }
             GithubRepository.TrendingOption.THIS_WEEK -> {
                 currentCalendar.set(Calendar.DAY_OF_WEEK, currentCalendar.firstDayOfWeek)
                 return dateFormat.format(Date(currentCalendar.timeInMillis))
@@ -58,5 +74,8 @@ class GithubRepositoryImpl
         return dateFormat.format(Date(currentCalendar.timeInMillis))
     }
 
+    fun GithubRepo.addContributors(contributors: List<GithubRepoContributor>) {
+        this.contributors?.addAll(contributors)
+    }
 
 }

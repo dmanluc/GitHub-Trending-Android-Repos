@@ -1,9 +1,10 @@
 package com.dmanluc.githubrepos.presentation.di.module
 
 import com.dmanluc.githubrepos.data.api.GithubApi
+import com.dmanluc.githubrepos.data.mapper.GithubRepoContributorsMapper
 import com.dmanluc.githubrepos.data.mapper.GithubReposMapper
 import com.dmanluc.githubrepos.data.repository.GithubRepositoryImpl
-import com.dmanluc.githubrepos.domain.interactor.GetGithubTrendingAndroidRepos
+import com.dmanluc.githubrepos.domain.interactor.GetGithubTrendingAndroidReposUseCase
 import com.dmanluc.githubrepos.domain.repository.GithubRepository
 import com.dmanluc.githubrepos.presentation.adapter.TrendingReposOverviewAdapter
 import com.dmanluc.githubrepos.presentation.di.scope.FragmentScope
@@ -30,15 +31,21 @@ class TrendingReposOverviewModule(private val fragment: TrendingReposOverviewFra
 
     @FragmentScope
     @Provides
-    fun provideApiMapper(): GithubReposMapper = GithubReposMapper()
+    fun provideRepoApiMapper(): GithubReposMapper = GithubReposMapper()
 
     @FragmentScope
     @Provides
-    fun provideGithubRepository(service: GithubApi, mapper: GithubReposMapper): GithubRepository = GithubRepositoryImpl(service, mapper)
+    fun provideRepoContributorsApiMapper(): GithubRepoContributorsMapper = GithubRepoContributorsMapper()
 
     @FragmentScope
     @Provides
-    fun provideGithubTrendingAndroidReposUseCase(repository: GithubRepository) = GetGithubTrendingAndroidRepos(repository)
+    fun provideGithubRepository(service: GithubApi,
+                                reposMapper: GithubReposMapper,
+                                contributorsMapper: GithubRepoContributorsMapper): GithubRepository = GithubRepositoryImpl(service, reposMapper, contributorsMapper)
+
+    @FragmentScope
+    @Provides
+    fun provideGithubTrendingAndroidReposUseCase(repository: GithubRepository) = GetGithubTrendingAndroidReposUseCase(repository)
 
     @FragmentScope
     @Provides
