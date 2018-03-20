@@ -41,7 +41,6 @@ import kotlinx.android.synthetic.main.fragment_github_repo_detail.repository_det
 import kotlinx.android.synthetic.main.fragment_github_repo_detail.repository_detail_owner_name
 import kotlinx.android.synthetic.main.fragment_github_repo_detail.repository_detail_updated_at
 import org.parceler.Parcels
-import java.net.URL
 import javax.inject.Inject
 
 /**
@@ -104,7 +103,7 @@ class TrendingRepoDetailFragment :
 
         repository_detail_owner_name.text = githubRepo.ownerName
         Glide.with(context)
-                .load(URL(githubRepo.ownerAvatarUrl))
+                .load(githubRepo.ownerAvatarUrl)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
                                               isFirstResource: Boolean): Boolean {
@@ -131,7 +130,7 @@ class TrendingRepoDetailFragment :
             githubRepo.contributors?.take(6)?.forEachIndexed { index, githubRepoContributor ->
                 contributorsProgressBarAvatarIds[index].visibility = View.VISIBLE
                 Glide.with(context)
-                        .load(URL(githubRepoContributor.avatarUrl))
+                        .load(githubRepoContributor.avatarUrl)
                         .listener(object : RequestListener<Drawable> {
                             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
                                                       isFirstResource: Boolean): Boolean {

@@ -29,7 +29,6 @@ import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_desc
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_forks
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_name
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_stars
-import java.net.URL
 import javax.inject.Inject
 
 /**
@@ -95,7 +94,7 @@ class TrendingReposOverviewAdapter @Inject constructor(
                 item.contributors?.take(6)?.forEachIndexed { index, githubRepoContributor ->
                     contributorsProgressBarAvatarIds[index].visibility = View.VISIBLE
                     Glide.with(context)
-                            .load(URL(githubRepoContributor.avatarUrl))
+                            .load(githubRepoContributor.avatarUrl)
                             .listener(object : RequestListener<Drawable> {
                                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
                                                           isFirstResource: Boolean): Boolean {
