@@ -56,7 +56,7 @@
             android:padding="15dp"
             android:text="@string/repository_detail_link_owner_github"
             android:textColor="@color/colorAccent"
-            android:textSize="@dimen/textSize_xs"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/repository_detail_owner_avatar"
             app:layout_constraintTop_toBottomOf="@+id/repository_detail_owner_name"/>
 
