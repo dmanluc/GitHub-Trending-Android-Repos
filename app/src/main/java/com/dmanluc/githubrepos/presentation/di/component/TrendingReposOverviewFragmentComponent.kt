@@ -12,7 +12,9 @@ import com.dmanluc.githubrepos.presentation.ui.fragment.trendingrepos.list.Trend
 import dagger.Component
 
 /**
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * Component Interface for Dependency Injection (DI) in TrendingRepositoryOverviewFragment
+ *
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    17/3/18.
  */

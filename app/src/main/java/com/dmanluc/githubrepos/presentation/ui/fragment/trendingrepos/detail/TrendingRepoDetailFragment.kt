@@ -47,7 +47,7 @@ import javax.inject.Inject
 /**
  * Fragment to display the details of the github repo previously selected from the list of trending android repositories
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */

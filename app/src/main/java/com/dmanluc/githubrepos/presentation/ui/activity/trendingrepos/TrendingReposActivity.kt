@@ -1,6 +1,8 @@
 package com.dmanluc.githubrepos.presentation.ui.activity.trendingrepos
 
+import android.app.Dialog
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import com.dmanluc.githubrepos.R
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
@@ -30,7 +32,7 @@ class TrendingReposActivity : BaseActivity<TrendingReposView, TrendingReposPrese
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (isOnline()) navigateToGithubRepoListScreen() else presenter.handleOnlineConnectivityError()
+        navigateToGithubRepoListScreen()
     }
 
     override fun showBackArrow(): Boolean = false
@@ -66,13 +68,16 @@ class TrendingReposActivity : BaseActivity<TrendingReposView, TrendingReposPrese
         alertBuilder.setMessage(getString(R.string.internet_connection_error_text))
         alertBuilder.setCancelable(false)
         alertBuilder.setPositiveButton(getString(R.string.internet_connection_error_button_text).toUpperCase(),
-                                       { _, _ -> System.exit(0) })
+                                       { _, _ -> navigateToGithubRepoListScreen() })
 
-        alertBuilder.create().show()
+        val alertDialog = alertBuilder.create()
+
+        alertDialog.show()
+        alertDialog.getButton(Dialog.BUTTON_POSITIVE).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
     }
 
     private fun navigateToGithubRepoListScreen() {
-        presenter.goToGithubRepoListScreen()
+        if (isOnline()) presenter.goToGithubRepoListScreen() else presenter.handleOnlineConnectivityError()
     }
 
 }

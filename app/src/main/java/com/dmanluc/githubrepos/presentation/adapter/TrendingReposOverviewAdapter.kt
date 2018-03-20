@@ -33,9 +33,9 @@ import java.net.URL
 import javax.inject.Inject
 
 /**
- * Adapter which prepares list of characters to be shown in the UI
+ * Adapter which prepares list of repositories to be shown in the UI
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */

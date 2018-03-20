@@ -6,7 +6,7 @@ import com.dmanluc.githubrepos.presentation.base.BaseView
 /**
  * View contract of TrendingReposOverviewFragment
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */
@@ -21,5 +21,7 @@ interface TrendingReposOverviewView : BaseView {
     fun handleFloatingMenu(enable: Boolean)
 
     fun showGithubApiErrorMessage(errorMessage: String?)
+
+    fun handleEmptyView(enabled: Boolean)
 
 }

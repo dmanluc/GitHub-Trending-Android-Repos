@@ -8,7 +8,9 @@ import retrofit2.http.Query
 import retrofit2.http.Url
 
 /**
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * GitHub API for searching repository data
+ *
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    17/3/18.
  */

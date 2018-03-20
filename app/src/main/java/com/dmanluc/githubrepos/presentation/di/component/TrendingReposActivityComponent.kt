@@ -7,7 +7,7 @@ import dagger.Component
 /**
  * Component Interface for Dependency Injection (DI) in CharactersActivity
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    17/3/18.
  */

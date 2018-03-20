@@ -7,7 +7,7 @@ import io.reactivex.Single
 /**
  * Use case to get trending android repos from Github API (with pagination)
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */

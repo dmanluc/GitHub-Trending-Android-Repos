@@ -12,7 +12,7 @@ import javax.inject.Inject
 /**
  * Presenter of TrendingReposOverviewFragment
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */
@@ -34,7 +34,13 @@ class TrendingReposOverviewPresenterImp
                 super.onSuccess(t)
                 if (!refreshMode) view?.hideLoadingProgress()
                 view?.handleFloatingMenu(true)
-                view?.showGithubRepoList(t, offset > 0 && trendingOption == getState().trendingOption)            }
+                if (t.isEmpty()) {
+                    view?.handleEmptyView(true)
+                } else {
+                    view?.handleEmptyView(false)
+                    view?.showGithubRepoList(t, offset > 0 && trendingOption == getState().trendingOption)
+                }
+            }
 
             override fun onErrorMessage(errorMessage: String?) {
                 super.onErrorMessage(errorMessage)
@@ -48,5 +54,6 @@ class TrendingReposOverviewPresenterImp
     override fun newState(): State = State(GithubRepository.TrendingOption.TODAY)
 
     @Parcel
-    data class State @ParcelConstructor constructor(var trendingOption: GithubRepository.TrendingOption) : BasePresenter.State
+    data class State @ParcelConstructor constructor(var trendingOption: GithubRepository.TrendingOption) :
+            BasePresenter.State
 }

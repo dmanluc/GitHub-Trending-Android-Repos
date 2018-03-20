@@ -4,7 +4,7 @@ import com.dmanluc.githubrepos.data.contract.GithubRepoContributorOutputContract
 import com.dmanluc.githubrepos.domain.entity.GithubRepoContributor
 
 /**
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */

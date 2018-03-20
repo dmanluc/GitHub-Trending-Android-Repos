@@ -3,7 +3,7 @@ package com.dmanluc.githubrepos.data.mapper
 /**
  * Transformer interface to adapt an specific output contract from JSON response to the specific domain entity of the app
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */
