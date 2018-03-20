@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repository_detail_owner_avatar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_owner_avatar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/repository_detail_owner_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:textSize="@dimen/textSize_l"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/repository_detail_owner_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Owner name"/>
+
+        <Button
+            android:id="@+id/repository_detail_owner_link_button_github"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="15dp"
+            android:text="See profile on GitHub"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/textSize_xs"
+            app:layout_constraintStart_toEndOf="@+id/repository_detail_owner_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_owner_name"/>
+
+        <TextView
+            android:id="@+id/repository_detail_description_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Description"
+            android:textSize="@dimen/textSize_m"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_owner_avatar"/>
+
+        <TextView
+            android:id="@+id/repository_detail_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="@dimen/textSize_s"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_description_label"
+            tools:text="Description Text"/>
+
+        <TextView
+            android:id="@+id/repository_detail_contributors_avatar_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Contributors"
+            android:textSize="@dimen/textSize_m"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_description"/>
+
+        <TextView
+            android:id="@+id/repository_detail_contributors_avatar_not_found_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="No contributors yet"
+            android:textSize="@dimen/textSize_s"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"
+            tools:visibility="visible"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repository_detail_contributor_avatar_1"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repository_detail_contributor_avatar_2"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_1"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_1"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repository_detail_contributor_avatar_3"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_2"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_2"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repository_detail_contributor_avatar_4"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_3"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar4"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_3"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repository_detail_contributor_avatar_5"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_4"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar5"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_4"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/repository_detail_contributor_avatar_6"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_5"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar6"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_below="@id/repository_stars"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorPrimary"
+            android:indeterminateTintMode="src_in"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/repository_detail_contributor_avatar_5"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributors_avatar_label"/>
+
+        <TextView
+            android:id="@+id/repository_detail_created_at_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Created at:"
+            android:textSize="@dimen/textSize_m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_contributor_avatar_1"/>
+
+        <TextView
+            android:id="@+id/repository_detail_created_at"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="@dimen/textSize_s"
+            app:layout_constraintBaseline_toBaselineOf="@+id/repository_detail_created_at_label"
+            app:layout_constraintStart_toEndOf="@+id/repository_detail_created_at_label"
+            tools:text="01-01-2018"/>
+
+        <TextView
+            android:id="@+id/repository_detail_updated_at_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Updated at:"
+            android:textSize="@dimen/textSize_m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_created_at_label"/>
+
+        <TextView
+            android:id="@+id/repository_detail_updated_at"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="@dimen/textSize_s"
+            app:layout_constraintBaseline_toBaselineOf="@+id/repository_detail_updated_at_label"
+            app:layout_constraintStart_toEndOf="@+id/repository_detail_updated_at_label"
+            tools:text="01-03-2018"/>
+
+        <TextView
+            android:id="@+id/repository_detail_language_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Language:"
+            android:textSize="@dimen/textSize_m"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_updated_at_label"/>
+
+        <TextView
+            android:id="@+id/repository_detail_language"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textSize="@dimen/textSize_s"
+            app:layout_constraintBaseline_toBaselineOf="@+id/repository_detail_language_label"
+            app:layout_constraintStart_toEndOf="@+id/repository_detail_language_label"
+            tools:text="Kotlin"/>
+
+        <Button
+            android:id="@+id/repository_detail_link_button_github"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:padding="15dp"
+            android:text="More details on GitHub"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/repository_detail_language_label"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

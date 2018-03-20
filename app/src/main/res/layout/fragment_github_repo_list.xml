@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                              xmlns:fab="http://schemas.android.com/apk/res-auto"
+                                              xmlns:tools="http://schemas.android.com/tools"
+                                              android:id="@+id/swipe_layout"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent"
+                                              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <com.github.clans.fab.FloatingActionMenu
+            android:id="@+id/fab_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="@dimen/medium_margin"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginLeft="@dimen/medium_margin"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            fab:menu_fab_size="normal"
+            fab:menu_showShadow="true"
+            fab:menu_shadowColor="#66000000"
+            fab:menu_shadowRadius="4dp"
+            fab:menu_shadowXOffset="1dp"
+            fab:menu_shadowYOffset="3dp"
+            fab:menu_colorNormal="@color/colorPrimary"
+            fab:menu_colorPressed="@color/colorAccent"
+            fab:menu_colorRipple="#99FFFFFF"
+            fab:menu_animationDelayPerItem="10"
+            fab:menu_icon="@drawable/ic_trending"
+            fab:menu_buttonSpacing="0dp"
+            fab:menu_labels_margin="0dp"
+            fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+            fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+            fab:menu_labels_paddingTop="4dp"
+            fab:menu_labels_paddingRight="8dp"
+            fab:menu_labels_paddingBottom="4dp"
+            fab:menu_labels_paddingLeft="8dp"
+            fab:menu_labels_padding="8dp"
+            fab:menu_labels_textColor="@color/colorAccent"
+            fab:menu_labels_textSize="14sp"
+            fab:menu_labels_cornerRadius="3dp"
+            fab:menu_labels_colorNormal="@color/colorPrimary"
+            fab:menu_labels_showShadow="true"
+            fab:menu_labels_singleLine="false"
+            fab:menu_labels_ellipsize="none"
+            fab:menu_labels_maxLines="-1"
+            fab:menu_labels_position="left"
+            fab:menu_openDirection="up"
+            fab:menu_backgroundColor="@android:color/transparent">
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_repository_today"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_refresh"
+                fab:fab_size="mini"
+                fab:fab_label="Today"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="#444444"
+                fab:fab_colorRipple="#66FFFFFF"
+                fab:backgroundTint="@color/colorPrimary"/>
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_repository_this_week"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_refresh"
+                fab:fab_size="mini"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="#444444"
+                fab:fab_colorRipple="#66FFFFFF"
+                fab:fab_label="This week"/>
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_repository_this_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_refresh"
+                fab:fab_size="mini"
+                fab:fab_label="This month"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="#444444"
+                fab:fab_colorRipple="#66FFFFFF"
+                fab:backgroundTint="@color/colorPrimary"/>
+
+            <com.github.clans.fab.FloatingActionButton
+                android:id="@+id/fab_repository_this_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_refresh"
+                fab:fab_size="mini"
+                fab:fab_label="This year"
+                fab:fab_colorNormal="@color/colorPrimary"
+                fab:fab_colorPressed="#444444"
+                fab:fab_colorRipple="#66FFFFFF"
+                fab:backgroundTint="@color/colorPrimary"/>
+
+        </com.github.clans.fab.FloatingActionMenu>
+
+    </FrameLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>
