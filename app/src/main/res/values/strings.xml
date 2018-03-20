@@ -1,11 +1,19 @@
 <resources>
 
     <string name="app_name">GitHub Trending Android Repos</string>
+
     <string name="internet_connection_error_title">Connectivity Error</string>
     <string name="internet_connection_error_text">Sorry but it seems you do not have an Internet connection available. Please check it and
         launch the app again
     </string>
     <string name="internet_connection_error_button_text">Exit the app</string>
-    <string name="empty_repo_description">No description found</string>
+
+    <string name="repository_without_description_info">No description found</string>
+    <string name="repository_without_language_info">No language found</string>
+    <string name="repository_detail_link_details_github">More details on GitHub</string>
+    <string name="repository_detail_contributors_label">Contributors</string>
+    <string name="repository_detail_without_contributors_info">No contributors yet</string>
+    <string name="repository_detail_link_owner_github">See profile on GitHub</string>
+    <string name="repository_detail_descripition_label">Description</string>
 
 </resources>

@@ -1,27 +1,18 @@
 <resources>
 
     <!-- Margins -->
-    <dimen name="min_margin">3dp</dimen>
-    <dimen name="xsmall_margin">5dp</dimen>
     <dimen name="small_margin">8dp</dimen>
-    <dimen name="default_margin">10dp</dimen>
     <dimen name="medium_margin">16dp</dimen>
     <dimen name="large_margin">24dp</dimen>
     <dimen name="big_margin">32dp</dimen>
-    <dimen name="xbig_margin">48dp</dimen>
-    <dimen name="xxbig_margin">64dp</dimen>
 
     <!-- Text sizes -->
     <dimen name="textSize_xs">10sp</dimen>
     <dimen name="textSize_s">14sp</dimen>
-    <dimen name="textSize_default">16sp</dimen>
     <dimen name="textSize_m">18sp</dimen>
     <dimen name="textSize_l">20sp</dimen>
-    <dimen name="textSize_xl">24sp</dimen>
-    <dimen name="textSize_xxl">30sp</dimen>
-    <dimen name="textSize_xxxl">38sp</dimen>
-    <dimen name="textSize_xxxxl">48sp</dimen>
 
-    <dimen name="avatar_size">36dp</dimen>
+    <dimen name="avatar_size_small">36dp</dimen>
+    <dimen name="avatar_size_big">96dp</dimen>
 
 </resources>

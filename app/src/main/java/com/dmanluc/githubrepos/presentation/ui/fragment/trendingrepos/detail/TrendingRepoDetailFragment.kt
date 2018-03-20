@@ -12,6 +12,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.dmanluc.githubrepos.R
 import com.dmanluc.githubrepos.R.layout.fragment_github_repo_detail
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
 import com.dmanluc.githubrepos.presentation.base.BaseFragment
@@ -120,7 +121,7 @@ class TrendingRepoDetailFragment :
                 .into(repository_detail_owner_avatar)
 
         if (githubRepo.description.isBlank()) {
-            repository_detail_description.text = "No description found"
+            repository_detail_description.text = getString(R.string.repository_without_description_info)
         } else {
             repository_detail_description.text = githubRepo.description
         }
@@ -159,7 +160,7 @@ class TrendingRepoDetailFragment :
         repository_detail_updated_at.text = githubRepo.updatedAt
 
         if (githubRepo.language?.isBlank() == true) {
-            repository_detail_language.text = "No language found"
+            repository_detail_language.text = getString(R.string.repository_without_language_info)
         } else {
             repository_detail_language.text = githubRepo.language
         }

@@ -84,7 +84,7 @@ class TrendingReposOverviewAdapter @Inject constructor(
 
             itemView.repository_name.text = item.fullName
             if (item.description.isBlank()) itemView.repository_description.text = context.getString(
-                    R.string.empty_repo_description)
+                    R.string.repository_without_description_info)
             else {
                 itemView.repository_description.text = item.description
             }
