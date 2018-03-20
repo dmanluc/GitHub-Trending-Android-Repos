@@ -29,13 +29,12 @@ import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_desc
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_forks
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_name
 import kotlinx.android.synthetic.main.item_github_repo_list.view.repository_stars
-import java.net.URL
 import javax.inject.Inject
 
 /**
- * Adapter which prepares list of characters to be shown in the UI
+ * Adapter which prepares list of repositories to be shown in the UI
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */
@@ -84,7 +83,7 @@ class TrendingReposOverviewAdapter @Inject constructor(
 
             itemView.repository_name.text = item.fullName
             if (item.description.isBlank()) itemView.repository_description.text = context.getString(
-                    R.string.empty_repo_description)
+                    R.string.repository_without_description_info)
             else {
                 itemView.repository_description.text = item.description
             }
@@ -95,7 +94,7 @@ class TrendingReposOverviewAdapter @Inject constructor(
                 item.contributors?.take(6)?.forEachIndexed { index, githubRepoContributor ->
                     contributorsProgressBarAvatarIds[index].visibility = View.VISIBLE
                     Glide.with(context)
-                            .load(URL(githubRepoContributor.avatarUrl))
+                            .load(githubRepoContributor.avatarUrl)
                             .listener(object : RequestListener<Drawable> {
                                 override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
                                                           isFirstResource: Boolean): Boolean {

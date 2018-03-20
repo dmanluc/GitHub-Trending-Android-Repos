@@ -16,6 +16,7 @@ import com.dmanluc.githubrepos.presentation.base.BaseFragment
 import com.dmanluc.githubrepos.presentation.custom.EndlessRecyclerViewScrollListener
 import com.dmanluc.githubrepos.presentation.di.component.DaggerTrendingReposOverviewFragmentComponent
 import com.dmanluc.githubrepos.presentation.di.module.TrendingReposOverviewModule
+import kotlinx.android.synthetic.main.fragment_github_repo_list.empty_repositories_info
 import kotlinx.android.synthetic.main.fragment_github_repo_list.fab_menu
 import kotlinx.android.synthetic.main.fragment_github_repo_list.fab_repository_this_month
 import kotlinx.android.synthetic.main.fragment_github_repo_list.fab_repository_this_week
@@ -26,7 +27,9 @@ import kotlinx.android.synthetic.main.fragment_github_repo_list.swipe_layout
 import javax.inject.Inject
 
 /**
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * Fragment to display the list of trending android repositories
+ *
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    17/3/18.
  */
@@ -98,6 +101,11 @@ class TrendingReposOverviewFragment :
     override fun showGithubApiErrorMessage(errorMessage: String?) {
         if (swipe_layout.isRefreshing) swipe_layout.isRefreshing = false
         errorMessage?.let { Toast.makeText(activity, errorMessage, Toast.LENGTH_LONG).show() }
+    }
+
+    override fun handleEmptyView(enabled: Boolean) {
+        if (enabled) recycler.visibility = View.GONE else recycler.visibility = View.VISIBLE
+        if (enabled) empty_repositories_info.visibility = View.VISIBLE else empty_repositories_info.visibility = View.GONE
     }
 
     private fun configureView() {

@@ -19,9 +19,9 @@
             android:id="@+id/repository_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
             android:textSize="@dimen/textSize_l"
             android:textStyle="bold"
             tools:text="Repository/Name"/>
@@ -31,10 +31,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/repository_name"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/medium_margin"
             android:layout_marginLeft="@dimen/medium_margin"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
             android:textSize="@dimen/textSize_s"
             tools:text="Repository Description"/>
 
@@ -43,10 +43,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/repository_description"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:drawableLeft="@drawable/ic_star_24dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:drawableLeft="@drawable/ic_star"
             android:drawablePadding="@dimen/small_margin"
             android:gravity="center"
             android:textSize="@dimen/textSize_xs"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/repository_description"
             android:layout_margin="@dimen/medium_margin"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/small_margin"
             android:layout_toRightOf="@id/repository_stars"
             android:drawableLeft="@drawable/ic_github_fork"
             android:drawablePadding="@dimen/small_margin"
@@ -70,19 +70,19 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/repository_contributor_avatar_1"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"/>
 
         <ProgressBar
             android:id="@+id/progressBar1"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorPrimary"
             android:indeterminateTintMode="src_in"
@@ -91,20 +91,20 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/repository_contributor_avatar_2"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_1"/>
 
         <ProgressBar
             android:id="@+id/progressBar2"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_1"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorPrimary"
@@ -114,20 +114,20 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/repository_contributor_avatar_3"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_2"/>
 
         <ProgressBar
             android:id="@+id/progressBar3"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_2"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorPrimary"
@@ -137,20 +137,20 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/repository_contributor_avatar_4"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_3"/>
 
         <ProgressBar
             android:id="@+id/progressBar4"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_3"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorPrimary"
@@ -160,20 +160,20 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/repository_contributor_avatar_5"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_4"/>
 
         <ProgressBar
             android:id="@+id/progressBar5"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_4"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorPrimary"
@@ -183,20 +183,20 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/repository_contributor_avatar_6"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_5"/>
 
         <ProgressBar
             android:id="@+id/progressBar6"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="@dimen/avatar_size_small"
+            android:layout_height="@dimen/avatar_size_small"
             android:layout_below="@id/repository_stars"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layout_marginStart="@dimen/medium_margin"
             android:layout_toRightOf="@id/repository_contributor_avatar_5"
             android:indeterminate="true"
             android:indeterminateTint="@color/colorPrimary"

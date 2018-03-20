@@ -16,7 +16,7 @@ import retrofit2.Retrofit
 /**
  * Module class for providing dependencies
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    17/3/18.
  */

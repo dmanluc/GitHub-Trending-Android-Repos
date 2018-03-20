@@ -12,6 +12,7 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.dmanluc.githubrepos.R
 import com.dmanluc.githubrepos.R.layout.fragment_github_repo_detail
 import com.dmanluc.githubrepos.domain.entity.GithubRepo
 import com.dmanluc.githubrepos.presentation.base.BaseFragment
@@ -40,13 +41,12 @@ import kotlinx.android.synthetic.main.fragment_github_repo_detail.repository_det
 import kotlinx.android.synthetic.main.fragment_github_repo_detail.repository_detail_owner_name
 import kotlinx.android.synthetic.main.fragment_github_repo_detail.repository_detail_updated_at
 import org.parceler.Parcels
-import java.net.URL
 import javax.inject.Inject
 
 /**
  * Fragment to display the details of the github repo previously selected from the list of trending android repositories
  *
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */
@@ -103,7 +103,7 @@ class TrendingRepoDetailFragment :
 
         repository_detail_owner_name.text = githubRepo.ownerName
         Glide.with(context)
-                .load(URL(githubRepo.ownerAvatarUrl))
+                .load(githubRepo.ownerAvatarUrl)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
                                               isFirstResource: Boolean): Boolean {
@@ -120,7 +120,7 @@ class TrendingRepoDetailFragment :
                 .into(repository_detail_owner_avatar)
 
         if (githubRepo.description.isBlank()) {
-            repository_detail_description.text = "No description found"
+            repository_detail_description.text = getString(R.string.repository_without_description_info)
         } else {
             repository_detail_description.text = githubRepo.description
         }
@@ -130,7 +130,7 @@ class TrendingRepoDetailFragment :
             githubRepo.contributors?.take(6)?.forEachIndexed { index, githubRepoContributor ->
                 contributorsProgressBarAvatarIds[index].visibility = View.VISIBLE
                 Glide.with(context)
-                        .load(URL(githubRepoContributor.avatarUrl))
+                        .load(githubRepoContributor.avatarUrl)
                         .listener(object : RequestListener<Drawable> {
                             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
                                                       isFirstResource: Boolean): Boolean {
@@ -159,7 +159,7 @@ class TrendingRepoDetailFragment :
         repository_detail_updated_at.text = githubRepo.updatedAt
 
         if (githubRepo.language?.isBlank() == true) {
-            repository_detail_language.text = "No language found"
+            repository_detail_language.text = getString(R.string.repository_without_language_info)
         } else {
             repository_detail_language.text = githubRepo.language
         }

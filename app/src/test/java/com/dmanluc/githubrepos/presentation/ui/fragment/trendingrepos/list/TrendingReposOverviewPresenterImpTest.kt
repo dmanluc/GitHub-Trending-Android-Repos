@@ -29,6 +29,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.anyString
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
 import org.powermock.core.classloader.annotations.PrepareForTest
@@ -38,7 +39,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Unit test of TrendingReposOverviewFragment´s presenter implementation
  *
- * @author Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * @author Daniel Manrique <dmanluc91@gmail.com>
  * @version 1
  * @since 20/3/18.
  */
@@ -98,8 +99,11 @@ class TrendingReposOverviewPresenterImpTest {
             it.contributors = contributorTransformer.mapApiContractToDomainModel(contributorServiceResult.values()[0])
         }
 
-        Mockito.verify(view).handleFloatingMenu(true)
-        Mockito.verify(view).showGithubRepoList(reposToShow, false)
+        verify(view, Mockito.times(1)).showLoadingProgress()
+        verify(view, Mockito.times(1)).hideLoadingProgress()
+        verify(view).handleEmptyView(false)
+        verify(view).handleFloatingMenu(true)
+        verify(view).showGithubRepoList(reposToShow, false)
     }
 
     @Test
@@ -125,8 +129,28 @@ class TrendingReposOverviewPresenterImpTest {
             it.contributors = contributorTransformer.mapApiContractToDomainModel(contributorServiceResult.values()[0])
         }
 
-        Mockito.verify(view).handleFloatingMenu(true)
-        Mockito.verify(view).showGithubRepoList(reposToShow, true)
+        verify(view).handleEmptyView(false)
+        verify(view).handleFloatingMenu(true)
+        verify(view).showGithubRepoList(reposToShow, true)
+    }
+
+    @Test
+    fun loadGithubTrendingAndroidRepos_emptyView_success() {
+        val offset = 30
+
+        `when`(service.fetchTrendingAndroidRepos(anyString(), anyString(), anyString(), anyInt(), anyInt())).thenReturn(
+                Single.just(mockEmptyGithubSearchResponseData()))
+
+        val emptyRepoServiceResult = service.fetchTrendingAndroidRepos(anyString(), anyString(),
+                                                                       anyString(), anyInt(),
+                                                                       anyInt()).test().assertComplete()
+
+        presenter.loadGithubTrendingAndroidRepos(GithubRepository.TrendingOption.TODAY, offset, false)
+
+        verify(view, Mockito.times(1)).showLoadingProgress()
+        verify(view, Mockito.times(1)).hideLoadingProgress()
+        verify(view).handleEmptyView(true)
+        verify(view).handleFloatingMenu(true)
     }
 
     @Test
@@ -143,13 +167,18 @@ class TrendingReposOverviewPresenterImpTest {
 
         presenter.loadGithubTrendingAndroidRepos(GithubRepository.TrendingOption.TODAY, offset, false)
 
-        Mockito.verify(view, Mockito.times(1)).showLoadingProgress()
-        Mockito.verify(view, Mockito.times(1)).hideLoadingProgress()
-        Mockito.verify(view, Mockito.times(1)).showGithubApiErrorMessage("Error")
+        verify(view, Mockito.times(1)).showLoadingProgress()
+        verify(view, Mockito.times(1)).hideLoadingProgress()
+        verify(view, Mockito.times(1)).showGithubApiErrorMessage("Error")
     }
 
     private fun mockGithubSearchResponseData(): GithubSearchReposOutputContract {
         val listItems = listOf(mockGithubRepo(1), mockGithubRepo(2))
+        return GithubSearchReposOutputContract("2", incomplete_results = "0", items = listItems)
+    }
+
+    private fun mockEmptyGithubSearchResponseData(): GithubSearchReposOutputContract {
+        val listItems = listOf<GithubRepoOutputContract>()
         return GithubSearchReposOutputContract("2", incomplete_results = "0", items = listItems)
     }
 

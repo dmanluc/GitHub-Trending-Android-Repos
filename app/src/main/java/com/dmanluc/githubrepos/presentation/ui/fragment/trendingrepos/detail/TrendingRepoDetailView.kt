@@ -4,7 +4,9 @@ import com.dmanluc.githubrepos.domain.entity.GithubRepo
 import com.dmanluc.githubrepos.presentation.base.BaseView
 
 /**
- * @author   Daniel Manrique <daniel.manrique@uxsmobile.com>
+ * View contract of TrendingRepoDetailFragment
+ *
+ * @author   Daniel Manrique <dmanluc91@gmail.com>
  * @version  1
  * @since    18/3/18.
  */

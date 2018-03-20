@@ -11,6 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/empty_repositories_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/repositories_not_found"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler"
             android:layout_width="match_parent"
@@ -44,10 +53,10 @@
             fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
             fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
             fab:menu_labels_paddingTop="4dp"
-            fab:menu_labels_paddingRight="8dp"
+            fab:menu_labels_paddingRight="@dimen/small_margin"
             fab:menu_labels_paddingBottom="4dp"
-            fab:menu_labels_paddingLeft="8dp"
-            fab:menu_labels_padding="8dp"
+            fab:menu_labels_paddingLeft="@dimen/small_margin"
+            fab:menu_labels_padding="@dimen/small_margin"
             fab:menu_labels_textColor="@color/colorAccent"
             fab:menu_labels_textSize="14sp"
             fab:menu_labels_cornerRadius="3dp"
